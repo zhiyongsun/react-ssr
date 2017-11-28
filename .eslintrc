@@ -1,0 +1,69 @@
+{
+  /*n ES6 classes as ESLint is currently unable to parse it on its own. */
+  "parser": "babel-eslint",
+  /* ES6 JSX 配置*/
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  /* 配置运行的环境 */
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": [
+    /* eslint-plugin-react */
+    "react"
+  ],
+  "extends": "airbnb",
+  "rules": {
+
+    /*eslint配置*/
+    /*所有的配置在一起声明变量*/
+    "one-var":["error","always"],
+    /*对象的空格不需要*/
+    "object-curly-spacing": ["error", "never"],
+    /* 设置max-len */
+    "max-len": ["error", 140],
+    /*取消 spaced-comment*/
+    "spaced-comment": [0],
+    /*最后一行是否需要一空行*/
+    "eol-last": [0],
+    /*尾部的逗号*/
+    //    "comma-dangle": ["error","never"],
+    "indent": ["error"],
+    "no-unused-vars": ["error"],
+    "no-return-assign": ["warn"],
+    // 警告使用 new
+    "no-new-func": ["warn"],
+    "no-nested-ternary": ["warn"],
+    // 返回一致
+    "consistent-return": ["warn"],
+    // 没有执行的expressions
+    "no-unused-expressions":["warn"],
+    // 参数
+    "no-shadow":["warn"],
+    // 匿名函数
+    "func-names":["warn"],
+    "no-param-reassign":["warn"],
+    // 类似于javascript:void(0)
+    "no-script-url":["warn"],
+    // try catch
+    "no-unreachable":["warn"],
+
+
+    // ESLint-plugin-React settings
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    /*自关闭没有space*/
+    "react/jsx-space-before-closing":["error","always"],
+    /* 属性没有校验设置为不启用 */
+    "react/prop-types":[0],
+    /*空格数*/
+    "react/jsx-indent-props":["error"],
+    // 自关闭标签的位置
+    "react/jsx-closing-bracket-location":["error"]
+  }
+}
