@@ -1,0 +1,63 @@
+/**
+ * Created by zhiyong on 5/9/17.
+ */
+@import url("../../../common/less/mixins.less");
+.list.border-bootom {
+  .border-handle(0010, @borderColor);
+}
+.list {
+  color: @yBlack1;;
+  .border-handle(1010, @borderColor);
+  .px-to-rem(font-size, 30px);
+  .display-flex();
+  .flex-direction(column);
+  .press-item {
+    .px-to-rem(padding-left, 30px);
+  }
+  .list-item {
+    .px-to-rem(padding-right, 30px);
+    .px-to-rem(min-height, 88px);
+    .border-handle(0010, @borderColor);
+    .display-flex();
+    .justify-content(space-between);
+  }
+  .press-item:last-child .list-item:before {
+    border: 0px;
+  }
+  .item-content {
+    .flex-grow(1);
+    .px-to-rem(font-size,28px);
+    .px-to-rem(line-height, 88px);
+    .px-to-rem(min-height, 88px);
+    align-self: center;
+  }
+  .extra-child {
+    align-self: center;
+    text-align: right;
+    .flex-grow(1);
+    .px-to-rem(font-size,28px);
+    .px-to-rem(line-height, 88px);
+    .px-to-rem(min-height, 88px);
+  }
+  // icon
+  .right-icon {
+    align-self: center;
+    .px-to-rem(padding-left, 35px);
+    .px-to-rem(line-height, 88px);
+    .px-to-rem(min-height, 88px);
+    &:before {
+      position: absolute;
+      .px-to-rem(right, 30px);
+      color: @yBlack3;
+    }
+  }
+  .right-icon.direction-right:before {
+    .rotate(90deg);
+  }
+  .right-icon.direction-down:before {
+    .rotate(180deg);
+  }
+  .right-icon.direction-left:before {
+    .rotate(270deg);
+  }
+}

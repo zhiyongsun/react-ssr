@@ -1,0 +1,125 @@
+/**
+ *author zhiyong 
+ *date  21/11/2016
+ */
+.slider-arrows {
+  height: auto;
+  font-size: 60px;
+  color: black;
+  .slider-arrow-left {
+    display: inline;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    margin-top: -12px;
+    cursor: pointer;
+    z-index: 11;
+    .icono-caretLeft {
+      color: #333;
+    }
+  }
+  .slider-arrow-right {
+    display: inline;
+    position: absolute;
+    top: 50%;
+    right: 0;
+    margin-top: -12px;
+    cursor: pointer;
+    z-index: 11;
+    .icono-caretRight {
+      color: #333;
+    }
+  }
+  .negative {
+    .icono-caretLeft {
+      color: #999;
+    }
+  }
+  .negative {
+    .icono-caretRight {
+      color: #999;
+    }
+  }
+}
+
+span i[class*="icono"] {
+  color: #bbb;
+  transition: all 0.2s;
+}
+
+[class*=icono-], [class*=icono-] * {
+  box-sizing: border-box;
+}
+
+[class*=icono-] {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  font-style: normal;
+  color: #ddd;
+  text-align: left;
+  text-indent: -9999px;
+  direction: ltr;
+}
+
+.icono-caretLeft {
+  -webkit-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.icono-caretLeft, .icono-caretRight {
+  width: 12px;
+  height: 20px;
+  margin: 7px 11px;
+}
+
+[class*=icono-]:after, [class*=icono-]:before {
+  content: '';
+  pointer-events: none;
+}
+
+.icono-caretLeft:before, .icono-caretRight:before {
+  top: 2px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.icono-caretLeft:after, .icono-caretLeft:before, .icono-caretRight:after, .icono-caretRight:before {
+  width: 14px;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  margin: auto 0;
+  right: 2px;
+  box-shadow: inset 0 0 0 32px;
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+}
+
+[class*=icono-]:after, [class*=icono-]:before {
+  content: '';
+  pointer-events: none;
+}
+
+.icono-caretLeft:after, .icono-caretRight:after {
+  top: 0;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.icono-caretLeft:after, .icono-caretLeft:before, .icono-caretRight:after, .icono-caretRight:before {
+  width: 14px;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  margin: auto 0;
+  right: 2px;
+  box-shadow: inset 0 0 0 32px;
+  -webkit-transform-origin: right;
+  -ms-transform-origin: right;
+  transform-origin: right;
+}

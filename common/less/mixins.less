@@ -1,0 +1,24 @@
+//
+// 在所有的组件内部样式引用此组件,包含所有的全局变量,方法
+//
+
+//
+// Variables
+//
+@import "variables";
+
+//
+// all mixins
+//
+@import "mixins/compatibility.less";
+@import "mixins/rem.less";
+@import "mixins/borderHandle.less";
+@import "mixins/flex.less";
+
+.rotate(@rotate:45deg){
+  -ms-transform: rotate(@rotate);
+  -webkit-transform: rotate(@rotate);
+  -o-transform: rotate(@rotate);
+  -moz-transform: rotate(@rotate);
+  transform: rotate(@rotate);
+}

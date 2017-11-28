@@ -1,0 +1,84 @@
+/**
+ * Created by zhiyong on 10/19/17.
+ */
+
+/*
+* 设置retina显示屏边框1px展示方法
+* @param {number} border-width    set border-width, four numbers express top right bottom left
+* @param {string} borderColor    set border-color, but if value equal 0, express set width equal 0
+* @param {string} radius set border-radius
+* @param {string} borderStyle set   border-style
+* @param {number} zIndex 设置边框层级 前置>10,后置<10
+*/
+@isH5:true;
+.border-handle(@border-width: 1111, @borderColor: #ddd, @radius: 0, @borderStyle: solid, @zIndex:10){
+  &:before {
+    .border-width(@border-width, @borderColor, @borderStyle);
+    .color(border-color, @borderColor);
+    .border-to-rem(@isH5, @radius);
+    .z-index(@zIndex);
+  }
+  .radius-ratio(@radius);
+}
+
+.z-index(@zIndex) when (isnumber(@zIndex)) {
+  z-index: @zIndex;
+}
+
+/*
+* 生成上下左右边框
+* @param width 为4位整数，上右下左分别对应千、百、十、个位，每个位值只有 0或1，0表示该位置无边，1为有
+*  例 0110，表示 4个边框中， 无top、right 1px、bottom 1px、 无left
+*/
+.border-width (@width, @clear, @borderStyle) when (mod(@width , 10) = 1) {
+  //style位置前置,防止css压缩border-style后导致width被覆盖
+  border-left-style: @borderStyle;
+  .set-border-by-color(border-left-width, @clear);
+}
+.border-width (@width, @clear, @borderStyle) when (mod(@width , 100) >= 10) {
+  //style位置前置,防止css压缩border-style后导致width被覆盖
+  border-bottom-style: @borderStyle;
+  .set-border-by-color(border-bottom-width, @clear);
+}
+.border-width (@width, @clear, @borderStyle) when (mod(@width , 1000) >= 100) {
+  //style位置前置,防止css压缩border-style后导致width被覆盖
+  border-right-style: @borderStyle;
+  .set-border-by-color(border-right-width, @clear);
+}
+.border-width (@width, @clear, @borderStyle) when (@width >= 1000) {
+  //style位置前置,防止css压缩border-style后导致width被覆盖
+  border-top-style: @borderStyle;
+  .set-border-by-color(border-top-width, @clear);
+}
+
+
+.radius-ratio(@radius) when(@radius>0){
+  .px-to-rem(border-radius, @radius);
+  @media (-webkit-min-device-pixel-ratio: 2){
+    &:before {
+      .px-to-rem(border-radius, @radius*2);
+    }
+  }
+  @media (-webkit-min-device-pixel-ratio: 3){
+    &:before {
+      .px-to-rem(border-radius, @radius*3);
+    }
+  }
+}
+
+.border-to-rem (@isH5, @radius) when (@isH5 = true) {
+  .px-to-rem(border-radius, @radius);
+}
+.border-to-rem (@isH5, @radius) when (@isH5 = false) {
+  border-radius: @radius;
+}
+
+.set-border-by-color(@name, @color) when(@color = 0){
+    @{name}: 0;
+}
+.set-border-by-color(@name, @color) when not(@color = 0){
+    @{name}: 1px;
+}
+.color(@name, @color) when (isColor(@color)){
+    @{name}: @color;
+}

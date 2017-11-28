@@ -1,0 +1,52 @@
+/**
+ *author zhiyong 
+ *date  18/11/2016
+ */
+
+.pre(@style,@value) {
+  -webkit-@{style}: @value;
+  -moz-@{style}: @value;
+  -ms-@{style}: @value;
+  -o-@{style}: @value;
+    @{style}: @value;
+}
+.opacity(@value) {
+  .pre(opacity, @value);
+  filter: "alpha(opacity=@{value}*100)";
+}
+.slider {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  -webkit-perspective: 10000;
+  perspective: 10000;
+  .slider-items {
+    height: 100%;
+    position: absolute;
+    .slider-item {
+      display: inline-block;
+      height: 100%;
+    }
+    .slider-fade{
+      position: absolute;
+      top:0;
+      left:0;
+      right: 0;
+      bottom:0;
+      .opacity(0);
+      .pre(transition,all 0.6s);
+    }
+    .slider-item-active {
+      .opacity(1);
+      z-index:11 ;
+    }
+  }
+  .count-number{
+    position: absolute;
+    bottom:0;
+    right: 0;
+    left: 0;
+    text-align: center;
+  }
+}

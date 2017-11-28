@@ -1,0 +1,57 @@
+//
+// variables
+//
+@import "variables.less";
+//
+// mixins
+//
+@import "mixins.less";
+//
+// reset
+//
+@import "~normalize.css/normalize.css";
+@import "./reset.less";
+@import "../font-awesome/less/font-awesome.less";
+@import "~slick-carousel/slick/slick.less";
+@import "~slick-carousel/slick/slick-theme.less";
+//
+// default color
+//
+body {
+  font-family: @main-font-h5;
+  font-size: 0.28rem;
+  color: @color;
+}
+
+// 设置全局a标签样式
+a {
+  color: @color;
+  text-decoration: none;
+}
+
+//用于消除图片锯齿
+.jag {
+  outline: 1px solid transparent;
+}
+
+//一行显示，且有省略号:uc上有兼容问题
+.one-line {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis
+}
+
+.two-line {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+// 用于设置默认 font-awesome 的字体大小
+.fa-ul {
+  font-size: 16px;
+}
+
+
