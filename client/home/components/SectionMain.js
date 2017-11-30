@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styles from '../sass/SectionMain';
 
-import Main from './Main';
+import Main from './Main.tsx';
 
 class SectionMain extends Component {
     constructor() {

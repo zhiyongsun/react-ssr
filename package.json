@@ -52,7 +52,7 @@
     "css-modules-require-hook": "^4.0.5",
     "eslint": "^3.12.2",
     "eslint-plugin-react": "^6.8.0",
-    "extract-text-webpack-plugin": "^1.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
     "file-loader": "^0.10.1",
     "html-loader": "^0.4.4",
     "html-webpack-plugin": "^2.24.1",
@@ -80,5 +80,9 @@
     "type": "git",
     "url": "https://github.com/chikara-chan/react-isomorphic.git"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "browserslist": [
+    "last 2 versions",
+    "ie >= 8"
+  ]
 }

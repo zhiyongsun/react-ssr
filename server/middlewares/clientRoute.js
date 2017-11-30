@@ -13,8 +13,11 @@ async function clientRoute(ctx, next) {
     match({routes, location: ctx.url}, (error, redirectLocation, renderProps) => {
         _renderProps = renderProps
     })
-
+  console.log('--------------------')
+  console.log(JSON.stringify(ctx.url));
+  console.log(JSON.stringify(routes));
     if (_renderProps) {
+      console.log(JSON.stringify(routes));
         await ctx.render('index', {
             root: renderToString(
                 <Provider store={store}>

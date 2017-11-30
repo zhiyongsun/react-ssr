@@ -45,7 +45,7 @@ clientConfig = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: 'babel',
+        loader: 'babel-loader',
         query: {
           presets: ['es2015', 'react', 'stage-0'],
           plugins: ['transform-runtime', 'add-module-exports'],
@@ -53,20 +53,27 @@ clientConfig = {
         },
       }, {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css?modules&camelCase&importLoaders=1&localIdentName=[hash:base64:8]!postcss!sass'),
+        use: ExtractTextPlugin.extract({
+          use: [{
+            loader: "css-loader"
+          }, {
+            loader: "sass-loader"
+          }],
+          // use style-loader in development
+          fallback: "style-loader"
+        })
       }, {
         test: /\.(jpg|png|gif|webp)$/,
-        loader: 'url?limit=8000',
+        loader: 'url-loader?limit=8000',
       }, {
         test: /\.json$/,
-        loader: 'json',
+        loader: 'json-loader',
       }, {
         test: /\.html$/,
-        loader: 'html?minimize=false',
+        loader: 'html-loader?minimize=false',
       }],
   },
-  postcss: [autoprefixer({browsers: ['> 5%']})],
-  resolve: {extensions: ['', '.js', '.json', '.scss']},
+  resolve: {extensions: ['.js', '.json', '.scss','.ts', '.tsx']},
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.DedupePlugin(),
@@ -102,10 +109,15 @@ serverConfig = {
     __dirname: true,
   },
   module: {
-    loaders: [{
+    rules: [{
+      test: /\.tsx?$/,
+      use: 'ts-loader',
+      exclude: /node_modules/,
+    },
+      {
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel',
+      loader: 'babel-loader',
       query: {
         presets: ['es2015', 'react', 'stage-0'],
         plugins: ['add-module-exports'],
@@ -114,22 +126,21 @@ serverConfig = {
     }, {
       test: /\.scss$/,
       loaders: [
-        'css/locals?modules&camelCase&importLoaders=1&localIdentName=[hash:base64:8]',
-        'sass',
+        'css-loader/locals?modules&camelCase&importLoaders=1&localIdentName=[hash:base64:8]',
+        'sass-loader',
       ],
     }, {
       test: /\.(jpg|png|gif|webp)$/,
-      loader: 'url?limit=8000',
+      loader: 'url-loader?limit=8000',
     }, {
       test: /\.json$/,
-      loader: 'json',
+      loader: 'json-loader',
     }],
   },
   externals: getExternals(),
-  resolve: {extensions: ['', '.js', '.json', '.scss', '.tsx', '.ts']},
+  resolve: {extensions: ['.js', '.json', '.scss', '.tsx', '.ts']},
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),
-    new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {warnings: false},
       comments: false,
