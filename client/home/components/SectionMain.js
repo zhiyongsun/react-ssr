@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import styles from '../sass/SectionMain';
 
-import Main from './Main.ts';
+// import Main from './Main.ts';
 
 class SectionMain extends Component {
     constructor() {
@@ -12,10 +12,10 @@ class SectionMain extends Component {
         return (
             <section className={styles.sectionMain}>
                 Home
-              <Main
-                compiler="compiler"
-                framework="framework"
-              />
+              {/*<Main*/}
+                {/*compiler="compiler"*/}
+                {/*framework="framework"*/}
+              {/*/>*/}
             </section>
         )
     }

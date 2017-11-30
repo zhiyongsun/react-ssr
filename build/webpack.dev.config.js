@@ -26,11 +26,7 @@ module.exports = {
     publicPath: '/',
   },
   module: {
-    loaders: [{
-      test: /\.tsx?$/,
-      loader: 'ts-loader',
-      exclude: /node_modules/,
-    },
+    loaders: [
     {
       test: /\.js$/,
       exclude: /node_modules/,
