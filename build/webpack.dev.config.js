@@ -26,11 +26,11 @@ module.exports = {
     publicPath: '/',
   },
   module: {
-    loaders: [
+    rules: [
     {
       test: /\.js$/,
       exclude: /node_modules/,
-      loader: 'babel',
+      loader: 'babel-loader',
       query: {
         presets: ['es2015', 'react', 'stage-0', 'react-hmre'],
         plugins: ['transform-runtime', 'add-module-exports'],
@@ -39,30 +39,30 @@ module.exports = {
     }, {
       test: /\.scss$/,
       loaders: [
-        'style',
-        'css?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]',
-        'sass',
+        'style-loader',
+        'css-loader?modules&camelCase&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:8]',
+        'sass-loader',
       ],
     }, {
       test: /\.(jpg|png|gif|webp)$/,
-      loader: 'url?limit=8000',
+      loader: 'url-loader?limit=8000',
     }, {
       test: /\.json$/,
-      loader: 'json',
+      loader: 'json-loader',
     }, {
       test: /\.html$/,
-      loader: 'html?minimize=false',
+      loader: 'html-loader?minimize=false',
     }],
   },
-  resolve: {extensions: ['', '.js', '.json', '.scss', '.tsx', '.ts']},
+  resolve: {extensions: ['.js', '.json', '.scss', '.ts', '.tsx']},
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       names: ['vendor', 'manifest'],
       filename: '[name].js',
     }),
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)}),
     new HtmlWebpackPlugin({
       filename: '../views/dev/index.html',
@@ -71,3 +71,4 @@ module.exports = {
     new ProgressBarPlugin({summary: false}),
   ],
 };
+
